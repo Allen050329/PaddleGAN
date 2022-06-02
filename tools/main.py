@@ -45,7 +45,8 @@ def main(args, cfg):
     try:
         trainer.train()
     except KeyboardInterrupt as e:
-        trainer.save(trainer.current_epoch)
+        pass
+    trainer.save(trainer.current_epoch)
     trainer.close()
 
 
