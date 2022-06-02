@@ -30,11 +30,11 @@ def setup(args, cfg):
     else:
         cfg.profiler_options = None
 
-    cfg.timestamp = time.strftime('-%Y-%m-%d-%H-%M', time.localtime())
     cfg.output_dir = os.path.join(
         cfg.output_dir,
-        os.path.splitext(os.path.basename(str(args.config_file)))[0] +
-        cfg.timestamp)
+        os.path.splitext(os.path.basename(str(args.config_file)))[0] + '-' +
+        cfg.model.gan_criterion.name + '-' + cfg.model.gan_criterion.gan_mode +
+        '-' + str(cfg.model.con_weight) + '-' + str(cfg.lr_scheduler.iters_per_epoch))
 
     logger = setup_logger(cfg.output_dir)
 
