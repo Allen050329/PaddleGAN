@@ -56,7 +56,7 @@ def addMergin(img, target_w, target_h, background_color=(0, 0, 0)):
     width = int(width * scale / 16.) * 16
     height = int(height * scale / 16.) * 16
 
-    img = img.resize((width, height), Image.BICUBIC)
+    img = img.resize((width, height), Image.LANCZOS)
     xp = (target_w - width) // 2
     yp = (target_h - height) // 2
     result = Image.new(img.mode, (target_w, target_h), background_color)
