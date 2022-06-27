@@ -19,7 +19,7 @@ def generate_P_from_lmks(lmks, resize, w, h):
 
     diff = fix - lmks
     diff = diff.transpose(1, 2, 0)
-    diff = cv2.resize(diff, diff_size, interpolation=cv2.INTER_NEAREST)
+    diff = cv2.resize(diff, diff_size, interpolation=cv2.INTER_LANCZOS4)
     diff = diff.transpose(2, 0, 1)
 
     return diff
@@ -69,11 +69,11 @@ def calculate_consis_mask(mask, mask_B):
     mask_B_transpose = np.transpose(mask_B, (1, 2, 0))
     mask = cv2.resize(mask_transpose,
                       dsize=(w_a // 4, h_a // 4),
-                      interpolation=cv2.INTER_NEAREST)
+                      interpolation=cv2.INTER_LANCZOS4)
     mask = np.transpose(mask, (2, 0, 1))
     mask_B = cv2.resize(mask_B_transpose,
                         dsize=(w_b // 4, h_b // 4),
-                        interpolation=cv2.INTER_NEAREST)
+                        interpolation=cv2.INTER_LANCZOS4)
     mask_B = np.transpose(mask_B, (2, 0, 1))
     """calculate consistency mask between images"""
     h_a, w_a = mask.shape[1:]
