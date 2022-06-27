@@ -83,7 +83,7 @@ class MakeupDataset(paddle.io.Dataset):
             ])
         else:
             transform = T.Resize(size=self.trans_size,
-                                 interpolation=cv2.INTER_NEAREST)
+                                 interpolation=cv2.INTER_LANCZOS4)
 
         return transform
 
@@ -133,9 +133,9 @@ class MakeupDataset(paddle.io.Dataset):
             image_B = self.transform(image_B)
 
             mask_A = cv2.resize(mask_A, (256, 256),
-                                interpolation=cv2.INTER_NEAREST)
+                                interpolation=cv2.INTER_LANCZOS4)
             mask_B = cv2.resize(mask_B, (256, 256),
-                                interpolation=cv2.INTER_NEAREST)
+                                interpolation=cv2.INTER_LANCZOS4)
 
             lmks_A = np.loadtxt(
                 os.path.join(

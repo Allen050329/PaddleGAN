@@ -29,9 +29,9 @@ logger = logging.getLogger(__name__)
 
 def data_transform(img, resize_w, resize_h, load_size=286, pos=[0, 0, 256, 256], flip=True, is_image=True):
     if is_image:
-        resized = img.resize((resize_w, resize_h), Image.BICUBIC)
+        resized = img.resize((resize_w, resize_h), Image.LANCZOS)
     else:
-        resized = img.resize((resize_w, resize_h), Image.NEAREST)
+        resized = img.resize((resize_w, resize_h), Image.LANCZOS)
     croped = resized.crop((pos[0], pos[1], pos[2], pos[3]))
     fliped = ImageOps.mirror(croped) if flip else croped
     fliped = np.array(fliped) # transform to numpy array
