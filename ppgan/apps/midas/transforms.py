@@ -130,17 +130,17 @@ class Resize(object):
                 sample["disparity"] = cv2.resize(
                     sample["disparity"],
                     (width, height),
-                    interpolation=cv2.INTER_NEAREST,
+                    interpolation=cv2.INTER_LANCZOS4,
                 )
 
             if "depth" in sample:
                 sample["depth"] = cv2.resize(sample["depth"], (width, height),
-                                             interpolation=cv2.INTER_NEAREST)
+                                             interpolation=cv2.INTER_LANCZOS4)
 
             sample["mask"] = cv2.resize(
                 sample["mask"].astype(np.float32),
                 (width, height),
-                interpolation=cv2.INTER_NEAREST,
+                interpolation=cv2.INTER_LANCZOS4,
             )
             sample["mask"] = sample["mask"].astype(bool)
 
