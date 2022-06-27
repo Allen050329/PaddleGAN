@@ -56,7 +56,7 @@ def data_loader(path, size=256):
 
     img_gt = cv2.imread(path, cv2.IMREAD_COLOR)
 
-    img_gt = cv2.resize(img_gt, (size, size), interpolation=cv2.INTER_NEAREST)
+    img_gt = cv2.resize(img_gt, (size, size), interpolation=cv2.INTER_LANCZOS4)
 
     img_gt = img_gt.astype(np.float32) / 255.
     img_gt, img_lq = degrader.degrade_process(img_gt)

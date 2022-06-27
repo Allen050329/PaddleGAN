@@ -56,7 +56,7 @@ class PhotoPenPredictor(BasePredictor):
 
     def run(self, semantic_label_path):
         sem = Image.open(semantic_label_path)
-        sem = sem.resize((self.gen_cfg.crop_size, self.gen_cfg.crop_size), Image.NEAREST)
+        sem = sem.resize((self.gen_cfg.crop_size, self.gen_cfg.crop_size), Image.LANCZOS)
         sem = np.array(sem).astype('float32')
         sem = paddle.to_tensor(sem)
         sem = sem.reshape([1, 1, self.gen_cfg.crop_size, self.gen_cfg.crop_size])

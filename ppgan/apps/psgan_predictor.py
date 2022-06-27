@@ -74,7 +74,7 @@ class PreProcess:
         mask = self.face_parser.parse(
             np.float32(cv2.resize(np_image, (512, 512))))
         mask = cv2.resize(mask.numpy(), (self.img_size, self.img_size),
-                          interpolation=cv2.INTER_NEAREST)
+                          interpolation=cv2.INTER_LANCZOS4)
         mask = mask.astype(np.uint8)
         mask_tensor = paddle.to_tensor(mask)
 
